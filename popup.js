@@ -43,6 +43,16 @@ function buildTree(root) {
 	function _buildNode(node) {
 		var nodeString = '<li>';
 		nodeString += '<a class="node" data-tag="' + node.tag + '" data-childcount=' + node.children.length + ' data-id="' + node.id + '">' + node.tag + '</a>';
+		
+		// Add attributes as a tooltip or in a details section
+		if (node.attributes.length > 0) {
+			nodeString += '<div class="attributes">';
+			node.attributes.forEach(attr => {
+				nodeString += '<span>' + attr.name + ': ' + attr.value + '</span><br>';
+			});
+			nodeString += '</div>';
+		}
+
 		// Add the children as a sublist if any.
 		if (node.children.length > 0) {
 			nodeString += '<ul>';
@@ -55,4 +65,3 @@ function buildTree(root) {
 		return nodeString;
 	}
 }
-
