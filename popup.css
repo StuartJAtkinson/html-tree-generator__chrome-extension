@@ -113,3 +113,9 @@ ul {
 	color: #8cc152;
 	text-align: center;
 }
+
+/* Attributes Styling */
+.attributes {
+    font-size: 0.9em;
+    color: #555;
+}

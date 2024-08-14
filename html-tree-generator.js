@@ -1,4 +1,3 @@
-
 chrome.runtime.sendMessage(scanPage());
 /**
 *	Grabs the root dom element and builds a tree object that may be displayed in the popup.
@@ -10,6 +9,7 @@ function scanPage() {
 		var id = domElement.id;
 		var classes = domElement.classList;
 		var tagName = domElement.tagName;
+		var attributes = Array.from(domElement.attributes).map(attr => ({ name: attr.name, value: attr.value }));
 		var children = domElement.children;
 		var scannedChildren = [];
 		for (var i = 0; i < children.length; i++) {
@@ -19,6 +19,7 @@ function scanPage() {
 			tag: tagName,
 			id: id,
 			classes: classes,
+			attributes: attributes,
 			children: scannedChildren
 		}
 	}
