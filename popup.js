@@ -1,4 +1,5 @@
 window.onload = onWindowLoad;
+
 /**
 *	Listen for a message in order to know when to build the tree.
 */
@@ -12,27 +13,25 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   	}
 });
 
-
 /**
 *	Load the tree script on window load.
 *	Based on this Stackoverflow --- http://sau.pe/Z9z4/
 */
 function onWindowLoad() {
-  chrome.tabs.executeScript(null, {
-    file: "html-tree-generator.js"
+  chrome.scripting.executeScript({
+    target: {tabId: chrome.tabs.TAB_ID_NONE},
+    files: ["html-tree-generator.js"]
   });
 }
-
 
 /**
 *	Update the info in the details panel to match the node that was last hovered.
 */
 function hoverAction() {
-		document.getElementById('tagName').innerHTML = this.getAttribute('data-tag')
-    	document.getElementById('nodeId').innerHTML = this.getAttribute('data-id');
-		document.getElementById('childrenCount').innerHTML = this.getAttribute('data-childcount');
+	document.getElementById('tagName').innerHTML = this.getAttribute('data-tag');
+    document.getElementById('nodeId').innerHTML = this.getAttribute('data-id');
+	document.getElementById('childrenCount').innerHTML = this.getAttribute('data-childcount');
 }
-
 
 /**
 *	Builds the tree diagram that may be added to the dom.
@@ -61,7 +60,7 @@ function buildTree(root) {
 			}
 			nodeString += '</ul>';
 		}
-		nodeString += '</li>'
+		nodeString += '</li>';
 		return nodeString;
 	}
 }
