@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>HTML Tree Generator</title>
+    <link rel="stylesheet" type="text/css" href="popup.css"></link>
+  </head>
+  <body>
+    <div id="details">
+        <h1>HTML Tree Generator</h1>
+        <hr />
+        <form id="urlForm">
+          <label for="urlInput">Enter URL:</label>
+          <input type="text" id="urlInput" name="urlInput" required>
+          <button type="submit">Load</button>
+        </form>
+        <button id="generateTree" style="display: none;">Generate Tree</button>
+        <h2>Node Details</h2>
+        <h3><strong>Tag Name: </strong><span id="tagName"></span></h3>
+        <h3><strong>Node ID: </strong><span id="nodeId"></span></h3>
+        <h3><strong># of Children: </strong><span id="childrenCount"></span></h3>
+    </div>
+    <div class="container">
+        <iframe id="contentFrame" style="width: 50%; height: 80vh; display: none;"></iframe>
+        <div class="tree" id="tree">
+          <h1 class="loading">Loading...</h1>
+        </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
